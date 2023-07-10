@@ -30,6 +30,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">type</th>
             <th scope="col">url_github</th>
             <th scope="col">Action</th>
         </tr>
@@ -39,6 +40,7 @@
             <tr>
                 <th scope="row">{{ $project->id }}</th>
                 <td>{{ $project->title }}</td>
+                <td>{{ $project->type->project_type }}</td>
                 <td>{{ $project->url_github }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>

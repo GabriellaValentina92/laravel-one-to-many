@@ -16,6 +16,20 @@
         </div>
 
         <div class="mb-3">
+            <label for="type" class="form-label">Type</label>
+            <select class="form-select @error('type_id') is-invalid @enderror" aria-label="Default select example" id="type" name="type_id">
+                {{-- <option selected>Open this select menu</option>                --}}
+                @foreach ($types as $type){
+                    <option value="{{$type->id}}">{{$type->project_type}}</option>
+                }
+                <div class="invalid-feedback">
+                    @error('type_id') {{ $message }} @enderror
+                    </div> 
+                @endforeach
+            </select>
+        </div>    
+
+        <div class="mb-3">
             <label for="project_image" class="form-label">image url</label>
             <input type="url" class="form-control @error('project_image') is-invalid @enderror" id="project_image" rows="3" name="project_image" value="{{ old('project_image') }}">
             <div class="invalid-feedback">

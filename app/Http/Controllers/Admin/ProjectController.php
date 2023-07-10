@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Type;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProjectController extends Controller
 {
 
     private $validation = [
         'title'=> 'required|string|max:200',
+        'type_id'=> 'required|integer|exists:types,id',
         'project_image'=> 'url|max:200',
         'project_description' => 'required|string',
         'url_github' => 'required|url|max:200',
@@ -21,6 +23,7 @@ class ProjectController extends Controller
         'required'  => 'Il campo :attribute è obbligatorio',
         'max'       => 'Il campo :attribute non può superare i :max caratteri',
         'url'       => 'Il campo deve essere un url valido',
+        'exists'   => 'id non valido',
     ];
 
     /**
@@ -41,7 +44,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -58,6 +62,7 @@ class ProjectController extends Controller
         // salvare i dati nel db (questo metodo anche se è più lungo è il più sicuro)
         $newProject = new Project();
         $newProject->title = $data['title'];
+        $newProject->type_id = $data['type_id'];
         $newProject->project_image = $data['project_image'];
         $newProject->project_description = $data['project_description'];
         $newProject->url_github = $data['url_github'];
@@ -86,7 +91,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -104,6 +110,7 @@ class ProjectController extends Controller
         // cambiare i dati inseriti
         
         $project->title = $data['title'];
+        $project->type_id = $data['type_id'];
         $project->project_image = $data['project_image'];
         $project->project_description = $data['project_description'];
         $project->url_github = $data['url_github'];
