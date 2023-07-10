@@ -19,10 +19,11 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 20; $i++) {
 
             Project::create([
-                    'title' => $faker->words(rand(2, 10), true),
-                    'url_github' => 'https://github.com/GabriellaValentina92?tab=repositories',
-                    'project_description' => $faker->paragraphs(rand(2, 10), true),
-                    'project_image' => 'https://picsum.photos/id/' . rand(1, 200) . '/300/400',
+                'type_id' => rand(1, 3),
+                'title' => $faker->words(rand(2, 10), true),
+                'url_github' => 'https://github.com/GabriellaValentina92?tab=repositories',
+                'project_description' => $faker->paragraphs(rand(2, 10), true),
+                'project_image' => 'https://picsum.photos/id/' . rand(1, 200) . '/300/400',
           
             ]);
         }
