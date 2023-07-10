@@ -30,7 +30,7 @@
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Project_type</th>
-            {{-- <th scope="col">Description</th> --}}
+            <th scope="col">Description</th>
             <th scope="col">Action</th>
         </tr>
     </thead>

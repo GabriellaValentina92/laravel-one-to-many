@@ -40,7 +40,7 @@
             <tr>
                 <th scope="row">{{ $project->id }}</th>
                 <td>{{ $project->title }}</td>
-                <td>{{ $project->type->project_type }}</td>
+                <td><a href="{{route('admin.types.show', ['type' => $project->type])}}">{{ $project->type->project_type }}</a></td>
                 <td>{{ $project->url_github }}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('admin.projects.show', ['project' => $project->id]) }}">View</a>
